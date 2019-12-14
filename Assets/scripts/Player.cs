@@ -5,29 +5,25 @@ public class Player : MonoBehaviour
 {
     [SerializeField] 
     private float speed = 5.4f;
-    
     [SerializeField] 
     private GameObject laserPrefab;
-
     [SerializeField]
     private float fireRate = 0.5f;
+    private float _canFire = -1f;
 
-    private float _canFilre = -1f;
-
-
-    // Start is called before the first frame update
+    [SerializeField]
+    private int lives = 3;
+    
     void Start()
     {
-        // Take the current position = new position  (0,0,0)
         transform.position = new Vector3(0, 0, 0);
     }
 
-    // Update is called once per frame
     void Update()
     {
         MovePlayer();
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFilre)
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
         {
             Shoot();
         }
@@ -36,7 +32,7 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        _canFilre = Time.time + fireRate;
+        _canFire = Time.time + fireRate;
         Instantiate(laserPrefab, transform.position + new Vector3( 0, 0.8f, 0), Quaternion.identity);
     }
 
@@ -66,5 +62,14 @@ public class Player : MonoBehaviour
 
 
         transform.Translate(Time.deltaTime * speed * direction);
+    }
+
+    public void Damage()
+    {
+        lives--;
+        if (lives < 1)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
