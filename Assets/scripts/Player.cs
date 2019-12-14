@@ -3,19 +3,24 @@ using Vector3 = UnityEngine.Vector3;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] 
-    private float speed = 5.4f;
-    [SerializeField] 
-    private GameObject laserPrefab;
-    [SerializeField]
-    private float fireRate = 0.5f;
-    private float _canFire = -1f;
-
     [SerializeField]
     private int lives = 3;
-    
+
+    [SerializeField] 
+    private float speed = 5.4f;
+
+    [SerializeField]
+    private float fireRate = 0.5f;
+
+    [SerializeField] 
+    private GameObject laserPrefab;
+
+    private float _canFire = -1f;
+    private SpawnManager _spawnManager;
+
     void Start()
     {
+        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         transform.position = new Vector3(0, 0, 0);
     }
 
@@ -69,7 +74,9 @@ public class Player : MonoBehaviour
         lives--;
         if (lives < 1)
         {
+            _spawnManager.OnPlayersDeath();
             Destroy(this.gameObject);
+            
         }
     }
 }

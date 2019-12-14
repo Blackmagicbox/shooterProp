@@ -1,32 +1,40 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
-//    [SerializeField]
-//    private int maxEnemyNumber = 5;
-    [SerializeField]
+    [SerializeField] 
     private GameObject enemyPrefab;
+    [SerializeField]
+    private GameObject enemyContainer;
+    [SerializeField]
+    private float spawRate = 5.0f;
+
+    private bool _shouldSpaw = true;
 
     private void Start()
     {
         StartCoroutine(SpawnRoutine());
     }
 
-
     IEnumerator SpawnRoutine()
     {
-//        int currentEnemyCount = 0;
-//        while (currentEnemyCount <= maxEnemyNumber)
-        while (true)
+        while (_shouldSpaw)
         {
-//            currentEnemyCount++;
-            Instantiate(enemyPrefab, transform.position + new Vector3(Random.Range(-10f, 10f), 5.94f, 0),
-                Quaternion.identity);
-            yield return new WaitForSeconds(5.0f);
+            GameObject newEnemy = Instantiate(
+                enemyPrefab,
+                transform.position + new Vector3(Random.Range(-10f, 10f), 5.94f, 0),
+                Quaternion.identity
+            );
+            newEnemy.transform.parent = enemyContainer.transform;
+            yield return new WaitForSeconds(spawRate);
         }
+    }
+
+    public void OnPlayersDeath()
+    {
+        _shouldSpaw = false;
     }
 
 }
