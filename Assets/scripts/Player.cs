@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
 public class Player : MonoBehaviour
@@ -24,6 +25,9 @@ public class Player : MonoBehaviour
     
     [SerializeField]
     private bool isTripleShotActive;
+
+    [SerializeField]
+    private float tripleShotDuration = 5.0f;
 
     void Start()
     {
@@ -93,9 +97,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    public bool IsTripleShotActive
+    public void ActivateTripleShot()
+    { 
+        isTripleShotActive = true;
+        StartCoroutine(TripleShotPowerDownRoutine());
+    }
+    
+    IEnumerator TripleShotPowerDownRoutine()
     {
-        get => isTripleShotActive;
-        set => isTripleShotActive = value;
+        yield return new WaitForSeconds(this.tripleShotDuration);
+        isTripleShotActive = false;
+
     }
 }

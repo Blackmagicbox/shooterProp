@@ -328,7 +328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 825674407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 5.87, z: 0}
   m_LocalScale: {x: 0.50272, y: 0.50272, z: 0.50272}
   m_Children: []
   m_Father: {fileID: 0}
@@ -550,6 +550,7 @@ MonoBehaviour:
   tripleShotPrefab: {fileID: 1477290721478265505, guid: 9e1f99ac29830419099c52fe761f83ba,
     type: 3}
   isTripleShotActive: 0
+  tripleShotDuration: 10
 --- !u!212 &1126754601
 SpriteRenderer:
   m_ObjectHideFlags: 0
