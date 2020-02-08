@@ -8,25 +8,25 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        transform.position = new Vector3(0, 5.95f, 0);
+        transform.position = new Vector3(Random.Range(-8.01f, 8.01f), 9.0f, 0);
     }
 
     void Update()
     {
         Transform transform1 = transform;
         Vector3 descendSpeed = Time.deltaTime * speed * Vector3.down;
-        float randomModifyer = Random.Range(-10f, 10f);
+        float randomModifyer = Random.Range(-8.01f, 8.01f);
 
         transform1.Translate(descendSpeed);
 
 
-        if (transform1.position.y <= -6.17)
+        if (transform1.position.y <= -6.18)
         {
-            transform1.position = new Vector3(randomModifyer, 5.95f, 0);
+            transform1.position = new Vector3(randomModifyer, 9.0f, 0);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Laser"))
         {
@@ -40,6 +40,6 @@ public class Enemy : MonoBehaviour
                 player.Damage();
             }
         }
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

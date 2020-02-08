@@ -24,7 +24,7 @@ public class SpawnManager : MonoBehaviour
         {
             GameObject newEnemy = Instantiate(
                 enemyPrefab,
-                transform.position + new Vector3(Random.Range(-10f, 10f), 5.94f, 0),
+                transform.position + new Vector3(Random.Range(-8.01f, 8.01f), 9.0f, 0),
                 Quaternion.identity
             );
             newEnemy.transform.parent = enemyContainer.transform;

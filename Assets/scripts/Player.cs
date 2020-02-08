@@ -14,9 +14,16 @@ public class Player : MonoBehaviour
 
     [SerializeField] 
     private GameObject laserPrefab;
+    
+    [SerializeField] 
+    private GameObject tripleShotPrefab;
 
     private float _canFire = -1f;
+    
     private SpawnManager _spawnManager;
+    
+    [SerializeField]
+    private bool isTripleShotActive;
 
     void Start()
     {
@@ -38,7 +45,13 @@ public class Player : MonoBehaviour
     private void Shoot()
     {
         _canFire = Time.time + fireRate;
-        Instantiate(laserPrefab, transform.position + new Vector3( 0, 0.8f, 0), Quaternion.identity);
+        GameObject fire = laserPrefab;
+
+        if (isTripleShotActive)
+        {
+            fire = tripleShotPrefab;
+        }
+        Instantiate(fire, transform.position + new Vector3( 0, 0.73f, 0), Quaternion.identity);
     }
 
     private void MovePlayer()
@@ -51,16 +64,16 @@ public class Player : MonoBehaviour
         // Bounding box
         var currentPostion = transform.position;
 
-        currentPostion = new Vector3(currentPostion.x, Mathf.Clamp(currentPostion.y, -4.87f, 0), 0);
+        currentPostion = new Vector3(currentPostion.x, Mathf.Clamp(currentPostion.y, -3.94f, 0), 0);
 
 
-        if (transform.position.x >= 10.19)
+        if (transform.position.x >= 9.76)
         {
-            currentPostion = new Vector3(-10.19f, currentPostion.y, 0);
+            currentPostion = new Vector3(-9.76f, currentPostion.y, 0);
         }
-        else if (transform.position.x <= -10.19)
+        else if (transform.position.x <= -9.76)
         {
-            currentPostion = new Vector3(10.19f, currentPostion.y, 0);
+            currentPostion = new Vector3(9.76f, currentPostion.y, 0);
         }
 
         transform.position = currentPostion;
@@ -78,5 +91,11 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
             
         }
+    }
+
+    public bool IsTripleShotActive
+    {
+        get => isTripleShotActive;
+        set => isTripleShotActive = value;
     }
 }
