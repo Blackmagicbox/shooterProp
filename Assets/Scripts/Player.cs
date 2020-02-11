@@ -50,12 +50,14 @@ public class Player : MonoBehaviour
     {
         _canFire = Time.time + fireRate;
         GameObject fire = laserPrefab;
+        Vector3 pos = transform.position + new Vector3(0, 1.05f, 0);
 
         if (isTripleShotActive)
         {
             fire = tripleShotPrefab;
+            pos = transform.position + new Vector3(0, 0, 0);
         }
-        Instantiate(fire, transform.position + new Vector3( 0, 0.73f, 0), Quaternion.identity);
+        Instantiate(fire, pos, Quaternion.identity);
     }
 
     private void MovePlayer()

@@ -571,9 +571,9 @@ MonoBehaviour:
   tripleShotPowerupPrefab: {fileID: 4207456943936949858, guid: b4c58249b4a2842899af935506fb274a,
     type: 3}
   enemyContainer: {fileID: 1478571182}
-  spawRate: 5
-  powerupMinSpawRate: 12
-  powerupMaxSpawRate: 25
+  spawRate: 1
+  powerupMinSpawRate: 3
+  powerupMaxSpawRate: 5
 --- !u!4 &2011677568
 Transform:
   m_ObjectHideFlags: 0
