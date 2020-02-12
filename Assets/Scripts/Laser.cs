@@ -2,8 +2,7 @@
 
 public class Laser : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 10; 
+    [SerializeField] private float speed = 10;
 
     void Update()
     {
@@ -14,7 +13,7 @@ public class Laser : MonoBehaviour
         {
             Destroy(transform.parent.gameObject);
         }
-            
+
         Destroy(this.gameObject);
     }
 }

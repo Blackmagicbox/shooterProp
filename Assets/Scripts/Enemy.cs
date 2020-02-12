@@ -3,8 +3,7 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] 
-    private float speed = 4;
+    [SerializeField] private float speed = 4;
 
     void Start()
     {
@@ -32,12 +31,14 @@ public class Enemy : MonoBehaviour
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
-        } else if (!other.CompareTag("Player")) return;
+        }
+        else if (!other.CompareTag("Player")) return;
+
         Player player = other.transform.GetComponent<Player>();
 
         if (player)
         {
-            player.Damage(); 
+            player.Damage();
             Destroy(gameObject);
         }
     }
