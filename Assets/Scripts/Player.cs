@@ -5,18 +5,15 @@ using Vector3 = UnityEngine.Vector3;
 public class Player : MonoBehaviour
 {
     [SerializeField] private int lives = 3;
-
     [SerializeField] private float speed = 5.4f;
-
+    [SerializeField] private float speedMultiplyer = 1.5f;
     [SerializeField] private float fireRate = 0.5f;
-
     [SerializeField] private GameObject laserPrefab;
-
     [SerializeField] private GameObject tripleShotPrefab;
 
-    private float _canFire = -1f;
+    private float canFire = -1f;
 
-    private SpawnManager _spawnManager;
+    private SpawnManager spawnManager;
 
     [SerializeField] private bool isTripleShotActive;
 
@@ -24,7 +21,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         transform.position = new Vector3(0, 0, 0);
     }
 
@@ -32,7 +29,7 @@ public class Player : MonoBehaviour
     {
         MovePlayer();
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > canFire)
         {
             Shoot();
         }
@@ -40,7 +37,7 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        _canFire = Time.time + fireRate;
+        canFire = Time.time + fireRate;
         GameObject fire = laserPrefab;
         Vector3 pos = transform.position + new Vector3(0, 1.05f, 0);
 
@@ -86,7 +83,7 @@ public class Player : MonoBehaviour
         lives--;
         if (lives < 1)
         {
-            _spawnManager.OnPlayersDeath();
+            spawnManager.OnPlayersDeath();
             Destroy(this.gameObject);
         }
     }
