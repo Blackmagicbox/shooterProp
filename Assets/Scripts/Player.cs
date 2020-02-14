@@ -14,10 +14,12 @@ public class Player : MonoBehaviour
     private float canFire = -1f;
 
     private SpawnManager spawnManager;
-
+    // Tripleshot powerup config
     [SerializeField] private bool isTripleShotActive;
-
     [SerializeField] private float tripleShotDuration = 5.0f;
+    
+    // Speedboost powerfup config
+    [SerializeField] private bool isSpeedBoostActive;
 
     void Start()
     {
@@ -74,8 +76,14 @@ public class Player : MonoBehaviour
 
         transform.position = currentPostion;
 
-
-        transform.Translate(Time.deltaTime * speed * direction);
+        if (isSpeedBoostActive)
+        {
+            transform.Translate(Time.deltaTime * (speed * speedMultiplyer) * direction);
+        }
+        else
+        {
+            transform.Translate(Time.deltaTime * speed * direction);
+        }
     }
 
     public void Damage()
