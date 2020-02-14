@@ -99,12 +99,18 @@ public class Player : MonoBehaviour
     public void ActivateTripleShot()
     {
         isTripleShotActive = true;
-        StartCoroutine(TripleShotPowerDownRoutine());
+        StartCoroutine(PowerupCooldownRoutine());
     }
 
-    IEnumerator TripleShotPowerDownRoutine()
+    IEnumerator PowerupCooldownRoutine()
     {
         yield return new WaitForSeconds(this.tripleShotDuration);
         isTripleShotActive = false;
+    }
+    
+    public void ActivateSpeedBoost()
+    {
+        isSpeedBoostActive = true;
+        StartCoroutine(PowerupCooldownRoutine());
     }
 }
