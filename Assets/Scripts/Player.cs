@@ -23,11 +23,13 @@ public class Player : MonoBehaviour
     
     // Shield powerup config
     [SerializeField] private bool isShieldActive;
+    [SerializeField] private GameObject shieldVisualizer;
 
     void Start()
     {
         spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         transform.position = new Vector3(0, 0, 0);
+        shieldVisualizer.SetActive(false);
     }
 
     void Update()
@@ -91,6 +93,12 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        if (isShieldActive)
+        {
+            isShieldActive = false;
+            shieldVisualizer.SetActive(false);
+            return;
+        }
         lives--;
         if (lives >= 1) return;
         spawnManager.OnPlayersDeath();
@@ -124,13 +132,6 @@ public class Player : MonoBehaviour
     public void ActivateShield()
     {
         isShieldActive = true;
-        StartCoroutine(ShieldCooldownRoutine());
-        
-    }
-
-    IEnumerator ShieldCooldownRoutine()
-    {
-        yield return new WaitForSeconds(this.tripleShotDuration);
-        isShieldActive = false;
+        shieldVisualizer.SetActive(true);
     }
 }
