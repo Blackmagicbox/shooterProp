@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private GameObject tripleShotPowerupPrefab;
+    [SerializeField] private GameObject[] powerup;
     [SerializeField] private GameObject enemyContainer;
     [SerializeField] private float spawRate = 5.0f;
     [SerializeField] private float powerupMinSpawRate = 5.0f;
@@ -42,7 +42,7 @@ public class SpawnManager : MonoBehaviour
         {
             Vector3 spanwPosition = transform.position + new Vector3(Random.Range(-7.67f, 7.67f), 9.0f, 0);
             Instantiate(
-                tripleShotPowerupPrefab,
+                powerup[(int) Random.Range(0,3)],
                 spanwPosition,
                 Quaternion.identity
             );
