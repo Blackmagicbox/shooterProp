@@ -41,8 +41,10 @@ public class SpawnManager : MonoBehaviour
         while (_shouldSpaw)
         {
             Vector3 spanwPosition = transform.position + new Vector3(Random.Range(-7.67f, 7.67f), 9.0f, 0);
+            int randomPowerup = Random.Range(0, 3);
+            
             Instantiate(
-                powerup[(int) Random.Range(0,3)],
+                powerup[randomPowerup],
                 spanwPosition,
                 Quaternion.identity
             );
