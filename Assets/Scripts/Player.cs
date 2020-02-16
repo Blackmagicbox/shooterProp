@@ -18,8 +18,11 @@ public class Player : MonoBehaviour
     [SerializeField] private bool isTripleShotActive;
     [SerializeField] private float tripleShotDuration = 5.0f;
     
-    // Speedboost powerfup config
+    // Speedboost powerup config
     [SerializeField] private bool isSpeedBoostActive;
+    
+    // Shield powerup config
+    [SerializeField] private bool isShieldActive;
 
     void Start()
     {
@@ -89,28 +92,45 @@ public class Player : MonoBehaviour
     public void Damage()
     {
         lives--;
-        if (lives < 1)
-        {
-            spawnManager.OnPlayersDeath();
-            Destroy(this.gameObject);
-        }
+        if (lives >= 1) return;
+        spawnManager.OnPlayersDeath();
+        Destroy(this.gameObject);
     }
 
     public void ActivateTripleShot()
     {
         isTripleShotActive = true;
-        StartCoroutine(PowerupCooldownRoutine());
+        StartCoroutine(TripleShotCooldownRoutine());
     }
 
-    IEnumerator PowerupCooldownRoutine()
+    IEnumerator TripleShotCooldownRoutine()
     {
         yield return new WaitForSeconds(this.tripleShotDuration);
         isTripleShotActive = false;
     }
-    
+
     public void ActivateSpeedBoost()
     {
         isSpeedBoostActive = true;
-        StartCoroutine(PowerupCooldownRoutine());
+        StartCoroutine(SpeedBoostCooldownRoutine());
+    }
+
+    IEnumerator SpeedBoostCooldownRoutine()
+    {
+        yield return new WaitForSeconds(this.tripleShotDuration);
+        isSpeedBoostActive = false;
+    }
+
+    public void ActivateShield()
+    {
+        isShieldActive = true;
+        StartCoroutine(ShieldCooldownRoutine());
+        
+    }
+
+    IEnumerator ShieldCooldownRoutine()
+    {
+        yield return new WaitForSeconds(this.tripleShotDuration);
+        isShieldActive = false;
     }
 }

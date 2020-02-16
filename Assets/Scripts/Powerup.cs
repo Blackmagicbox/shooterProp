@@ -28,8 +28,10 @@ public class Powerup : MonoBehaviour
                 break;
             case 1:
                 Debug.Log("Speedup");
+                player.ActivateSpeedBoost();
                 break;
             case 2:
+                player.ActivateShield();
                 Debug.Log("Shield");
                 break;
         }

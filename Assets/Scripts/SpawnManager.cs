@@ -5,15 +5,10 @@ using Random = UnityEngine.Random;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
-
     [SerializeField] private GameObject tripleShotPowerupPrefab;
-
     [SerializeField] private GameObject enemyContainer;
-
     [SerializeField] private float spawRate = 5.0f;
-
     [SerializeField] private float powerupMinSpawRate = 5.0f;
-
     [SerializeField] private float powerupMaxSpawRate = 5.0f;
 
     private bool _shouldSpaw = true;
