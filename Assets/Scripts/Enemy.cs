@@ -27,19 +27,21 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Player player;
         if (other.CompareTag("Laser"))
         {
+            // Find the player and call the IncrementScore function to increment the points.
+            player = GameObject.Find("Player").GetComponent<Player>();
+            player.IncrementScore(10);
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
         else if (!other.CompareTag("Player")) return;
 
-        Player player = other.transform.GetComponent<Player>();
+        player = other.transform.GetComponent<Player>();
 
-        if (player)
-        {
-            player.Damage();
-            Destroy(gameObject);
-        }
+        if (!player) return;
+        player.Damage();
+        Destroy(gameObject);
     }
 }

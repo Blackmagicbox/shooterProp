@@ -566,7 +566,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Score:  70'
+  m_Text: 'Score:'
 --- !u!222 &1481960425
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -788,6 +788,7 @@ GameObject:
   - component: {fileID: 1994520451}
   - component: {fileID: 1994520450}
   - component: {fileID: 1994520449}
+  - component: {fileID: 1994520453}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -875,6 +876,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1994520453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994520448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0af6aac95424a6085e5b153097346f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1481960424}
 --- !u!1 &2011677566
 GameObject:
   m_ObjectHideFlags: 0

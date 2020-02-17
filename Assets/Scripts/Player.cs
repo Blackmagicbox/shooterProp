@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Vector3 = UnityEngine.Vector3;
 
 public class Player : MonoBehaviour
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float fireRate = 0.5f;
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private GameObject tripleShotPrefab;
+    private int score = 0;
 
     private float canFire = -1f;
 
@@ -133,5 +135,15 @@ public class Player : MonoBehaviour
     {
         isShieldActive = true;
         shieldVisualizer.SetActive(true);
+    }
+
+    public int IncrementScore(int points)
+    {
+        return score += points;
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }
