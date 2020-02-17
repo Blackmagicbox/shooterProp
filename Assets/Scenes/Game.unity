@@ -680,8 +680,9 @@ MonoBehaviour:
     type: 3}
   tripleShotPrefab: {fileID: 5091656788104706749, guid: 0bddca815c4e1451a86cd55e4b5a09aa,
     type: 3}
+  tripleShotCooldDownTime: 15
+  speedBoostCooldDownTime: 10
   isTripleShotActive: 0
-  tripleShotDuration: 15
   isSpeedBoostActive: 0
   isShieldActive: 0
   shieldVisualizer: {fileID: 206881808}

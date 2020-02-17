@@ -4,9 +4,11 @@ using Random = UnityEngine.Random;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed = 4;
+    private Player _player;
 
     void Start()
     {
+        _player = GameObject.Find("Player").GetComponent<Player>();
         transform.position = new Vector3(Random.Range(-8.01f, 8.01f), 9.0f, 0);
     }
 
@@ -27,21 +29,24 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Player player;
         if (other.CompareTag("Laser"))
         {
             // Find the player and call the IncrementScore function to increment the points.
-            player = GameObject.Find("Player").GetComponent<Player>();
-            player.IncrementScore(10);
+            if (_player != null)
+            {
+                _player.IncrementScore(10);
+            }
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
-        else if (!other.CompareTag("Player")) return;
+        else if (other.CompareTag("Player"))
+        {
+            Player _player = other.transform.GetComponent<Player>();
 
-        player = other.transform.GetComponent<Player>();
+            if (!_player) return;
+            _player.Damage();
+            Destroy(gameObject);
+        };
 
-        if (!player) return;
-        player.Damage();
-        Destroy(gameObject);
     }
 }

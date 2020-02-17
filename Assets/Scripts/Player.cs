@@ -16,10 +16,13 @@ public class Player : MonoBehaviour
     private float canFire = -1f;
 
     private SpawnManager spawnManager;
+    // Cool down for all powerups
+    [SerializeField] private float tripleShotCooldDownTime = 5.0f;
+    [SerializeField] private float speedBoostCooldDownTime = 5.0f;
+
     // Tripleshot powerup config
     [SerializeField] private bool isTripleShotActive;
-    [SerializeField] private float tripleShotDuration = 5.0f;
-    
+
     // Speedboost powerup config
     [SerializeField] private bool isSpeedBoostActive;
     
@@ -115,7 +118,7 @@ public class Player : MonoBehaviour
 
     IEnumerator TripleShotCooldownRoutine()
     {
-        yield return new WaitForSeconds(this.tripleShotDuration);
+        yield return new WaitForSeconds(tripleShotCooldDownTime);
         isTripleShotActive = false;
     }
 
@@ -127,7 +130,7 @@ public class Player : MonoBehaviour
 
     IEnumerator SpeedBoostCooldownRoutine()
     {
-        yield return new WaitForSeconds(this.tripleShotDuration);
+        yield return new WaitForSeconds(speedBoostCooldDownTime);
         isSpeedBoostActive = false;
     }
 
@@ -137,9 +140,9 @@ public class Player : MonoBehaviour
         shieldVisualizer.SetActive(true);
     }
 
-    public int IncrementScore(int points)
+    public void IncrementScore(int points)
     {
-        return score += points;
+        score += points;
     }
 
     public int GetScore()
