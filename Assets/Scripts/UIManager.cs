@@ -8,13 +8,11 @@ public class UIManager : MonoBehaviour
     private Player _player;
     void Start()
     {
-        _player = GameObject.Find("Player").GetComponent<Player>();
-        scoreText.text = "Score: " + _player.GetScore();
+        scoreText.text = "Score: " + 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateScore(int playerScore)
     {
-        scoreText.text = "Score: " + _player.GetScore();
+        scoreText.text = "Score: " + playerScore;
     }
 }

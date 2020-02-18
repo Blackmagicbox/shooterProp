@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private float canFire = -1f;
 
     private SpawnManager spawnManager;
+
     // Cool down for all powerups
     [SerializeField] private float tripleShotCooldDownTime = 5.0f;
     [SerializeField] private float speedBoostCooldDownTime = 5.0f;
@@ -25,14 +26,19 @@ public class Player : MonoBehaviour
 
     // Speedboost powerup config
     [SerializeField] private bool isSpeedBoostActive;
-    
+
     // Shield powerup config
     [SerializeField] private bool isShieldActive;
     [SerializeField] private GameObject shieldVisualizer;
 
+    // Ui Manager
+    private UIManager _uiManager;
+
     void Start()
     {
+
         spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         transform.position = new Vector3(0, 0, 0);
         shieldVisualizer.SetActive(false);
     }
@@ -104,6 +110,7 @@ public class Player : MonoBehaviour
             shieldVisualizer.SetActive(false);
             return;
         }
+
         lives--;
         if (lives >= 1) return;
         spawnManager.OnPlayersDeath();
@@ -143,10 +150,7 @@ public class Player : MonoBehaviour
     public void IncrementScore(int points)
     {
         score += points;
-    }
-
-    public int GetScore()
-    {
-        return score;
+        _uiManager.UpdateScore(score);
     }
 }
+    
