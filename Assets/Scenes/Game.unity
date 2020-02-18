@@ -926,9 +926,9 @@ MonoBehaviour:
   - {fileID: 8412699959493958931, guid: 8606e5172c4fb42aaae81ae38e8ac547, type: 3}
   - {fileID: 7599698179694866213, guid: 1c40df1cc246f463080832ec4bd9da58, type: 3}
   enemyContainer: {fileID: 1478571182}
-  spawRate: 1
-  powerupMinSpawRate: 3
-  powerupMaxSpawRate: 5
+  spawRate: 2
+  powerupMinSpawRate: 8
+  powerupMaxSpawRate: 15
 --- !u!4 &2011677568
 Transform:
   m_ObjectHideFlags: 0
