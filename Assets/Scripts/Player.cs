@@ -112,6 +112,9 @@ public class Player : MonoBehaviour
         }
 
         lives--;
+        
+        _uiManager.UpdateLivesCounter(lives);
+        
         if (lives >= 1) return;
         spawnManager.OnPlayersDeath();
         Destroy(this.gameObject);

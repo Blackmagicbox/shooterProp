@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
-    // Start is called before the first frame update
+    [SerializeField] private Image liveImage;
+    [SerializeField] private Sprite[] livesSprites;
+    
     private Player _player;
     void Start()
     {
@@ -14,5 +17,10 @@ public class UIManager : MonoBehaviour
     public void UpdateScore(int playerScore)
     {
         scoreText.text = "Score: " + playerScore;
+    }
+
+    public void UpdateLivesCounter(int playerLives)
+    {
+        liveImage.sprite = livesSprites[playerLives];
     }
 }
