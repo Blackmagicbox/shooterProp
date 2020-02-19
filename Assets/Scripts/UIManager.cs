@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
     [SerializeField] private Text gameOverText;
+    [SerializeField] private Text restartLevelInfoText;
     [SerializeField] private Image liveImage;
     [SerializeField] private Sprite[] livesSprites;
     
@@ -15,6 +16,7 @@ public class UIManager : MonoBehaviour
     {
         scoreText.text = "Score: " + 0;
         gameOverText.gameObject.SetActive(false);
+        restartLevelInfoText.gameObject.SetActive(false);
     }
 
     public void UpdateScore(int playerScore)
@@ -27,9 +29,15 @@ public class UIManager : MonoBehaviour
         liveImage.sprite = livesSprites[playerLives];
         if (playerLives == 0)
         {
-            gameOverText.gameObject.SetActive(true);
-            StartCoroutine(GameOverFlickeringRoutine());
+            GameOverSequence();
         }
+    }
+    
+    void GameOverSequence()
+    {
+        gameOverText.gameObject.SetActive(true);
+        restartLevelInfoText.gameObject.SetActive(true);
+        StartCoroutine(GameOverFlickeringRoutine());
     }
 
     IEnumerator GameOverFlickeringRoutine()
