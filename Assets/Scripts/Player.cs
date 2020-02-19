@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
         
         if (lives >= 1) return;
         spawnManager.OnPlayersDeath();
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     public void ActivateTripleShot()

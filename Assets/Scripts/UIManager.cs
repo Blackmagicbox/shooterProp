@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text gameOverText;
     [SerializeField] private Image liveImage;
     [SerializeField] private Sprite[] livesSprites;
     
@@ -12,6 +13,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         scoreText.text = "Score: " + 0;
+        gameOverText.gameObject.SetActive(false);
     }
 
     public void UpdateScore(int playerScore)
@@ -22,5 +24,9 @@ public class UIManager : MonoBehaviour
     public void UpdateLivesCounter(int playerLives)
     {
         liveImage.sprite = livesSprites[playerLives];
+        if (playerLives == 0)
+        {
+            gameOverText.gameObject.SetActive(true);
+        }
     }
 }
