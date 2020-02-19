@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,20 @@ public class UIManager : MonoBehaviour
         if (playerLives == 0)
         {
             gameOverText.gameObject.SetActive(true);
+            StartCoroutine(GameOverFlickeringRoutine());
         }
+    }
+
+    IEnumerator GameOverFlickeringRoutine()
+    {
+        while (true)
+        {
+            gameOverText.text = "GAME OVER";
+            yield return new WaitForSeconds(0.5f);
+            gameOverText.text = "";
+            yield return new WaitForSeconds(0.5f);
+            gameOverText.text = "GAME OVER";
+        }
+
     }
 }
