@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text gameOverText;
     [SerializeField] private Text restartLevelInfoText;
@@ -38,6 +39,7 @@ public class UIManager : MonoBehaviour
         gameOverText.gameObject.SetActive(true);
         restartLevelInfoText.gameObject.SetActive(true);
         StartCoroutine(GameOverFlickeringRoutine());
+        gameManager.GameOver();
     }
 
     IEnumerator GameOverFlickeringRoutine()

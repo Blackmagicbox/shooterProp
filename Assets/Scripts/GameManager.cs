@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -10,7 +9,7 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver && Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("Scenes/Game");
+            SceneManager.LoadScene(0); // Scenes/Game
         }
     }
 
