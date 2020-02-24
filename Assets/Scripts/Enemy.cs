@@ -5,11 +5,22 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed = 4;
     private Player _player;
+    private Animator _anim;
 
     void Start()
     {
-        _player = GameObject.Find("Player").GetComponent<Player>();
         transform.position = new Vector3(Random.Range(-8.01f, 8.01f), 9.0f, 0);
+        _player = GameObject.Find("Player").GetComponent<Player>();
+        if (_player == null)
+        {
+            Debug.LogError("The player is null");
+        }
+
+        _anim = GetComponent<Animator>();
+        if (_anim == null)
+        {
+            Debug.LogError("The animator object is null");
+        }
     }
 
     void Update()
@@ -37,7 +48,8 @@ public class Enemy : MonoBehaviour
                 _player.IncrementScore(10);
             }
             Destroy(other.gameObject);
-            Destroy(gameObject);
+            _anim.SetTrigger("OnEnemyDestruction");
+            Destroy(gameObject, 2.8f);
         }
         else if (other.CompareTag("Player"))
         {
@@ -45,7 +57,8 @@ public class Enemy : MonoBehaviour
 
             if (!_player) return;
             _player.Damage();
-            Destroy(gameObject);
+            _anim.SetTrigger("OnEnemyDestruction");
+            Destroy(gameObject, 2.8f);
         };
 
     }
