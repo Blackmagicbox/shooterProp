@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
             }
             Destroy(other.gameObject);
             _anim.SetTrigger("OnEnemyDestruction");
-            Destroy(gameObject, 2.8f);
+            Destroy(gameObject, 2.0f);
         }
         else if (other.CompareTag("Player"))
         {
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
             if (!_player) return;
             _player.Damage();
             _anim.SetTrigger("OnEnemyDestruction");
-            Destroy(gameObject, 2.8f);
+            Destroy(gameObject, 2.0f);
         };
 
     }
