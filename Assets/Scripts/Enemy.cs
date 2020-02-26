@@ -48,17 +48,20 @@ public class Enemy : MonoBehaviour
                 _player.IncrementScore(10);
             }
             Destroy(other.gameObject);
+            speed = 0;
             _anim.SetTrigger("OnEnemyDestruction");
-            Destroy(gameObject, 2.0f);
+            Destroy(gameObject, 2.8f);
         }
         else if (other.CompareTag("Player"))
         {
             Player _player = other.transform.GetComponent<Player>();
-
+            speed = 0;
             if (!_player) return;
+            
             _player.Damage();
+            
             _anim.SetTrigger("OnEnemyDestruction");
-            Destroy(gameObject, 2.0f);
+            Destroy(gameObject, 2.8f);
         };
 
     }
